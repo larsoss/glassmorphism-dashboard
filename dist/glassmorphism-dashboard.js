@@ -16,7 +16,7 @@
  * @license MIT
  */
 
-const CARD_VERSION = '1.0.2';
+const CARD_VERSION = '1.0.3';
 
 console.info(
   `%c GLASSMORPHISM-DASHBOARD %c v${CARD_VERSION} `,
@@ -511,6 +511,7 @@ class GlassmorphismDashboard extends HTMLElement {
   renderToggleDevice(entity, category) {
     const isOn = entity.state === 'on';
     const icon = category === 'lights' ? (isOn ? '💡' : '🔌') : '🔌';
+    const stateText = entity.state === 'unavailable' ? 'Niet beschikbaar' : (isOn ? 'Aan' : 'Uit');
     
     return `
       <div class="device-card ${isOn ? 'active' : ''}" data-entity="${entity.entity_id}">
@@ -519,7 +520,7 @@ class GlassmorphismDashboard extends HTMLElement {
         ` : ''}
         <div class="device-icon ${isOn ? 'glow' : ''}">${icon}</div>
         <div class="device-name">${entity.attributes.friendly_name || entity.entity_id}</div>
-        <div class="device-state">${isOn ? 'Aan' : 'Uit'}</div>
+        <div class="device-state">${stateText}</div>
         <div class="toggle ${isOn ? 'on' : 'off'}" data-toggle="${entity.entity_id}">
           <div class="toggle-knob"></div>
         </div>
@@ -585,13 +586,14 @@ class GlassmorphismDashboard extends HTMLElement {
   }
 
   renderSensor(entity, category) {
+    const stateText = entity.state === 'unavailable' ? 'Niet beschikbaar' : (entity.state || 'Geen data');
     return `
       <div class="sensor-card" data-entity="${entity.entity_id}">
         ${this._editMode ? `
           <button class="remove-btn" data-entity="${entity.entity_id}" data-category="${category}">×</button>
         ` : ''}
         <div class="sensor-value">
-          ${entity.state}
+          ${stateText}
           <span class="sensor-unit">${entity.attributes.unit_of_measurement || ''}</span>
         </div>
         <div class="sensor-name">${entity.attributes.friendly_name || entity.entity_id}</div>
@@ -818,7 +820,7 @@ class GlassmorphismDashboard extends HTMLElement {
         display: block;
         font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         color: #fff;
-        --glass-bg: rgba(20, 25, 40, 0.85);
+        --glass-bg: rgba(30, 35, 50, 0.75);
         --glass-border: rgba(255, 255, 255, 0.1);
         --accent: #4FC3F7;
         --accent-glow: rgba(79, 195, 247, 0.4);
@@ -857,17 +859,17 @@ class GlassmorphismDashboard extends HTMLElement {
       
       .header-left .date-display {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.9);
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 4px;
         text-transform: capitalize;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .header-left .time-display {
         font-size: 42px;
         font-weight: 200;
         letter-spacing: -1px;
-        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
       
       .header-center {
@@ -878,7 +880,7 @@ class GlassmorphismDashboard extends HTMLElement {
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 8px;
-        text-shadow: 0 3px 6px rgba(0, 0, 0, 0.8);
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
       
       .room-stats {
@@ -892,13 +894,11 @@ class GlassmorphismDashboard extends HTMLElement {
         background: rgba(255, 255, 255, 0.1);
         border-radius: 12px;
         font-size: 12px;
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
       
       .stat-pill.active {
         background: rgba(79, 195, 247, 0.3);
         color: var(--accent);
-        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
       }
       
       .header-right {
@@ -916,7 +916,6 @@ class GlassmorphismDashboard extends HTMLElement {
       .weather-temp {
         font-size: 28px;
         font-weight: 300;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
       }
       
       .weather-icon {
@@ -970,13 +969,12 @@ class GlassmorphismDashboard extends HTMLElement {
       .stat-value {
         font-size: 22px;
         font-weight: 500;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
       }
       
       .stat-label {
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.8);
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       /* MAIN CONTENT */
@@ -1006,7 +1004,7 @@ class GlassmorphismDashboard extends HTMLElement {
         display: flex;
         align-items: center;
         gap: 8px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .add-entity-btn {
@@ -1039,9 +1037,9 @@ class GlassmorphismDashboard extends HTMLElement {
         grid-column: 1 / -1;
         text-align: center;
         padding: 24px;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 13px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       /* DEVICE CARDS */
@@ -1080,14 +1078,14 @@ class GlassmorphismDashboard extends HTMLElement {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .device-state {
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.8);
+        color: rgba(255, 255, 255, 0.7);
         margin-bottom: 10px;
-        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .remove-btn {

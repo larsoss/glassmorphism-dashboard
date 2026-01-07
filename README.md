@@ -6,8 +6,6 @@
 
 A beautiful, fully configurable smart home dashboard card for Home Assistant with a modern glassmorphism design.
 
-![Header](images/header.png)
-
 ![Dashboard Preview](images/preview.png)
 
 ## ✨ Features
