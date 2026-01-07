@@ -857,15 +857,17 @@ class GlassmorphismDashboard extends HTMLElement {
       
       .header-left .date-display {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.8);
         margin-bottom: 4px;
         text-transform: capitalize;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .header-left .time-display {
         font-size: 42px;
         font-weight: 200;
         letter-spacing: -1px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
       
       .header-center {
@@ -876,6 +878,7 @@ class GlassmorphismDashboard extends HTMLElement {
         font-size: 28px;
         font-weight: 600;
         margin-bottom: 8px;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
       }
       
       .room-stats {
@@ -928,7 +931,7 @@ class GlassmorphismDashboard extends HTMLElement {
         align-items: center;
         justify-content: center;
         transition: all 0.3s;
-        color: rgba(255, 255, 255, 0.7);
+        color: rgba(255, 255, 255, 0.9);
       }
       
       .edit-button:hover,
@@ -968,7 +971,8 @@ class GlassmorphismDashboard extends HTMLElement {
       
       .stat-label {
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.7);
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       /* MAIN CONTENT */
@@ -998,6 +1002,7 @@ class GlassmorphismDashboard extends HTMLElement {
         display: flex;
         align-items: center;
         gap: 8px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .add-entity-btn {
@@ -1030,8 +1035,9 @@ class GlassmorphismDashboard extends HTMLElement {
         grid-column: 1 / -1;
         text-align: center;
         padding: 24px;
-        color: rgba(255, 255, 255, 0.4);
+        color: rgba(255, 255, 255, 0.6);
         font-size: 13px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       /* DEVICE CARDS */
@@ -1070,12 +1076,14 @@ class GlassmorphismDashboard extends HTMLElement {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .device-state {
         font-size: 11px;
-        color: rgba(255, 255, 255, 0.5);
+        color: rgba(255, 255, 255, 0.7);
         margin-bottom: 10px;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
       }
       
       .remove-btn {
