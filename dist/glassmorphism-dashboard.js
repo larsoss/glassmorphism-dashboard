@@ -11,7 +11,7 @@
  * - Persistent storage in browser localStorage
  * - Dutch language interface
  * 
- * @author Lars / AllSetProfessional
+ * @author Lars Altorf
  * @version 1.0.0
  * @license MIT
  */
