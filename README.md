@@ -162,4 +162,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-Made with ❤️ by [Lars](https://github.com/larsz-o) | [AllSetProfessional](https://allsetprofessional.com)
+Made with ❤️ by [Lars Altorf)
