@@ -16,7 +16,7 @@
  * @license MIT
  */
 
-const CARD_VERSION = '1.0.3';
+const CARD_VERSION = '1.0.4';
 
 console.info(
   `%c GLASSMORPHISM-DASHBOARD %c v${CARD_VERSION} `,
@@ -332,6 +332,8 @@ class GlassmorphismDashboard extends HTMLElement {
 
   render() {
     if (!this._hass || !this._rooms) return;
+
+    console.log('Rendering dashboard, editMode:', this._editMode);
 
     const room = this._rooms[this._activeRoom];
     const weather = this.getState(this._config.weather_entity);
@@ -661,6 +663,7 @@ class GlassmorphismDashboard extends HTMLElement {
   attachEventListeners() {
     // Edit mode toggle
     this.shadowRoot.querySelector('#edit-toggle')?.addEventListener('click', () => {
+      console.log('Edit button clicked, toggling edit mode');
       this._editMode = !this._editMode;
       this.render();
     });
