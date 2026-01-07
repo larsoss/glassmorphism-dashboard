@@ -16,7 +16,8 @@
  * @license MIT
  */
 
-const CARD_VERSION = '1.0.4';
+const CARD_VERSION = '1.0.6';
+const ELEMENT_NAME = 'glassmorphism-dashboard-card';
 
 console.info(
   `%c GLASSMORPHISM-DASHBOARD %c v${CARD_VERSION} `,
@@ -24,7 +25,7 @@ console.info(
   'color: #4FC3F7; background: white; font-weight: bold;'
 );
 
-class GlassmorphismDashboard extends HTMLElement {
+class GlassmorphismDashboardCard extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
@@ -1539,17 +1540,19 @@ class GlassmorphismDashboard extends HTMLElement {
   }
 }
 
-// Register the card
-customElements.define('glassmorphism-dashboard', GlassmorphismDashboard);
+// Register the card with unique element name
+if (!customElements.get(ELEMENT_NAME)) {
+  customElements.define(ELEMENT_NAME, GlassmorphismDashboardCard);
+}
 
 // Register with HACS/HA card picker
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: 'glassmorphism-dashboard',
+  type: ELEMENT_NAME,
   name: 'Glassmorphism Dashboard',
   description: 'A beautiful, configurable smart home dashboard with glassmorphism design',
   preview: true,
-  documentationURL: 'https://github.com/larsz-o/glassmorphism-dashboard'
+  documentationURL: 'https://github.com/larsoss/glassmorphism-dashboard'
 });
 
-console.info('Glassmorphism Dashboard loaded successfully');
+console.info('Glassmorphism Dashboard Card loaded successfully');
