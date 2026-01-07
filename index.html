@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glassmorphism Dashboard - Live Preview</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            min-height: 100vh;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Glassmorphism Dashboard - Live Preview</h1>
+        <glassmorphism-dashboard></glassmorphism-dashboard>
+    </div>
+
+    <script>
+        // Mock Home Assistant API
+        window.hassConnection = {
+            subscribeMessage: () => {},
+            sendMessage: () => Promise.resolve()
+        };
+
+        // Mock HASS object
+        const mockHass = {
+            states: {
+                'light.woonkamer_lamp': {
+                    entity_id: 'light.woonkamer_lamp',
+                    state: 'on',
+                    attributes: {
+                        friendly_name: 'Woonkamer Lamp',
+                        brightness: 255
+                    }
+                },
+                'climate.woonkamer_thermostaat': {
+                    entity_id: 'climate.woonkamer_thermostaat',
+                    state: 'heat',
+                    attributes: {
+                        friendly_name: 'Woonkamer Thermostaat',
+                        temperature: 21,
+                        current_temperature: 20.5
+                    }
+                },
+                'media_player.woonkamer_tv': {
+                    entity_id: 'media_player.woonkamer_tv',
+                    state: 'playing',
+                    attributes: {
+                        friendly_name: 'Woonkamer TV'
+                    }
+                },
+                'sensor.temperatuur_woonkamer': {
+                    entity_id: 'sensor.temperatuur_woonkamer',
+                    state: '20.5',
+                    attributes: {
+                        friendly_name: 'Temperatuur Woonkamer',
+                        unit_of_measurement: '°C'
+                    }
+                },
+                'switch.woonkamer_stekker': {
+                    entity_id: 'switch.woonkamer_stekker',
+                    state: 'off',
+                    attributes: {
+                        friendly_name: 'Woonkamer Stekker'
+                    }
+                },
+                'weather.home': {
+                    entity_id: 'weather.home',
+                    state: 'sunny',
+                    attributes: {
+                        temperature: 15,
+                        friendly_name: 'Weer'
+                    }
+                },
+                'sensor.daily_energy': {
+                    entity_id: 'sensor.daily_energy',
+                    state: '12.5',
+                    attributes: {
+                        friendly_name: 'Dagelijks Energieverbruik',
+                        unit_of_measurement: 'kWh'
+                    }
+                }
+            },
+            callService: (domain, service, data) => {
+                console.log('Service call:', domain, service, data);
+                // Mock response
+                return Promise.resolve();
+            }
+        };
+
+        // Load the dashboard script
+        const script = document.createElement('script');
+        script.src = 'dist/glassmorphism-dashboard.js';
+        script.onload = () => {
+            // Wait for custom element to be defined
+            customElements.whenDefined('glassmorphism-dashboard').then(() => {
+                const dashboard = document.querySelector('glassmorphism-dashboard');
+
+                // Set mock config
+                dashboard.setConfig({
+                    location: 'Enschede',
+                    weather_entity: 'weather.home',
+                    energy_entity: 'sensor.daily_energy'
+                });
+
+                // Set mock hass
+                dashboard.set hass(mockHass);
+            });
+        };
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>
