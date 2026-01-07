@@ -275,23 +275,18 @@ class GlassmorphismDashboardCard extends HTMLElement {
 
   getWeatherIcon(state) {
     const icons = {
-      'sunny': '☀️',
-      'clear-night': '🌙',
-      'cloudy': '☁️',
-      'partlycloudy': '⛅',
-      'rainy': '🌧️',
-      'pouring': '🌧️',
-      'snowy': '❄️',
-      'snowy-rainy': '🌨️',
-      'fog': '🌫️',
-      'hail': '🌨️',
-      'lightning': '⚡',
-      'lightning-rainy': '⛈️',
-      'windy': '💨',
-      'windy-variant': '💨',
-      'exceptional': '⚠️'
+      'sunny': '<svg viewBox="0 0 24 24" width="36" height="36"><circle cx="12" cy="12" r="5" fill="#FFD700"/><g stroke="#FFD700" stroke-width="2"><line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/><line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/><line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/><line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/></g></svg>',
+      'clear-night': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="#E6E6FA" stroke="#B0C4DE" stroke-width="1"/></svg>',
+      'cloudy': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z" fill="#B0C4DE" stroke="#87CEEB" stroke-width="1"/></svg>',
+      'partlycloudy': '<svg viewBox="0 0 24 24" width="36" height="36"><circle cx="8" cy="8" r="4" fill="#FFD700"/><path d="M18 14h-1.26A6 6 0 1 0 9 18h9a4 4 0 0 0 0-8z" fill="#B0C4DE" stroke="#87CEEB" stroke-width="1"/></svg>',
+      'rainy': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M16 13h-1.26A6 6 0 1 0 7 17h9a4 4 0 0 0 0-8z" fill="#87CEEB"/><g stroke="#4FC3F7" stroke-width="2" stroke-linecap="round"><line x1="8" y1="19" x2="8" y2="22"/><line x1="12" y1="19" x2="12" y2="22"/></g></svg>',
+      'pouring': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M16 13h-1.26A6 6 0 1 0 7 17h9a4 4 0 0 0 0-8z" fill="#6B8E9F"/><g stroke="#4FC3F7" stroke-width="2" stroke-linecap="round"><line x1="7" y1="19" x2="7" y2="23"/><line x1="11" y1="19" x2="11" y2="23"/><line x1="15" y1="19" x2="15" y2="23"/></g></svg>',
+      'snowy': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M16 13h-1.26A6 6 0 1 0 7 17h9a4 4 0 0 0 0-8z" fill="#B0C4DE"/><g fill="#FFF"><circle cx="8" cy="20" r="1.5"/><circle cx="12" cy="21" r="1.5"/><circle cx="16" cy="20" r="1.5"/></g></svg>',
+      'fog': '<svg viewBox="0 0 24 24" width="36" height="36"><g stroke="#B0C4DE" stroke-width="2" stroke-linecap="round"><line x1="3" y1="10" x2="21" y2="10"/><line x1="3" y1="14" x2="21" y2="14"/><line x1="5" y1="18" x2="19" y2="18"/></g></svg>',
+      'lightning': '<svg viewBox="0 0 24 24" width="36" height="36"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#FFD700" stroke="#FFA500" stroke-width="1"/></svg>',
+      'windy': '<svg viewBox="0 0 24 24" width="36" height="36"><g stroke="#87CEEB" stroke-width="2" stroke-linecap="round" fill="none"><path d="M5 8h8.5a2.5 2.5 0 1 0-2.5-2.5"/><path d="M3 12h12.5a2.5 2.5 0 1 1-2.5 2.5"/><path d="M6 16h6.5a2.5 2.5 0 1 0-2.5-2.5"/></g></svg>'
     };
-    return icons[state] || '🌤️';
+    return icons[state] || icons['partlycloudy'];
   }
 
   getCategoryLabel(category) {
