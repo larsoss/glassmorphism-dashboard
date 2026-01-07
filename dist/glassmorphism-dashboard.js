@@ -16,7 +16,7 @@
  * @license MIT
  */
 
-const CARD_VERSION = '1.0.0';
+const CARD_VERSION = '1.0.1';
 
 console.info(
   `%c GLASSMORPHISM-DASHBOARD %c v${CARD_VERSION} `,
