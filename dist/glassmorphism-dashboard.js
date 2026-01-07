@@ -12,7 +12,7 @@
  * - Dutch language interface
  * 
  * @author Lars Altorf
- * @version 1.0.0
+ * @version 1.0.6
  * @license MIT
  */
 
